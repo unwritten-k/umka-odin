@@ -1,5 +1,30 @@
 package umka_lang
 
+UMKA_SHARED :: #config(UMKA_SHARED, false)
+
+when UMKA_SHARED {
+    when ODIN_OS == .Linux {
+        foreign import lib "linux/libumka.so"
+    }
+    else when ODIN_OS == .Windows {
+        foreign import lib "windows/libumka.dll"
+    }
+    else {
+        foreign import lib "system:umka"
+    }
+}
+else {
+    when ODIN_OS == .Linux {
+        foreign import lib "linux/libumka_static_linux.a"
+    }
+    else when ODIN_OS == .Windows {
+        foreign import lib "windows/libumka_static.lib"
+    }
+    else {
+        foreign import lib "system:umka"
+    }
+}
+
 tagUmka :: struct {}
 Umka :: tagUmka
 
