@@ -103,7 +103,7 @@ fn_UmkaCompile         :: #type proc "c" (umka: ^Umka,) -> bool
 fn_UmkaRun             :: #type proc "c" (umka: ^Umka,) -> i32
 fn_UmkaCall            :: #type proc "c" (umka: ^Umka, fn: ^FuncContext) -> i32
 fn_UmkaFree            :: #type proc "c" (umka: ^Umka,)
-fn_UmkaGetError        :: #type proc "c" (umka: ^Umka,) -> Error
+fn_UmkaGetError        :: #type proc "c" (umka: ^Umka,) -> ^Error
 fn_UmkaAlive           :: #type proc "c" (umka: ^Umka,) -> bool
 fn_UmkaAsm             :: #type proc "c" (umka: ^Umka,) -> [^]byte
 fn_UmkaAddModule       :: #type proc "c" (umka: ^Umka, fileName, sourceString: cstring) -> bool
