@@ -9,6 +9,9 @@ when UMKA_SHARED {
     else when ODIN_OS == .Windows {
         foreign import lib "windows/libumka.dll"
     }
+    else when ODIN_OS == .Darwin {
+        foreign import lib "darwin/libumka.dylib"
+    }
     else {
         foreign import lib "system:umka"
     }
@@ -19,6 +22,9 @@ else {
     }
     else when ODIN_OS == .Windows {
         foreign import lib "windows/libumka_static.lib"
+    }
+    else when ODIN_OS == .Darwin {
+        foreign import lib "darwin/libumka_static_darwin.a"
     }
     else {
         foreign import lib "system:umka"
