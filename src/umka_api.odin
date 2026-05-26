@@ -176,3 +176,53 @@ API :: struct {
     umkaGetMapItemType  : fn_UmkaGetMapItemType,
     umkaAddClosure      : fn_UmkaAddClosure
 } // UmkaAPI
+
+@(default_calling_convention="c", link_prefix="umka")
+foreign lib {
+    Alloc           :: proc() -> ^Umka ---
+    Init            :: proc(umka: ^Umka, fileName:cstring, sourceString:cstring=nil, stackSize: i32=1024*1024, reserver: rawptr=nil, argc: i32=0, argv: [^]^byte=nil, fileSystemEnabled:bool=false, implLibsEnabled:bool=false, warning: WarningCallback=nil) -> bool ---
+    Compile         :: proc(umka: ^Umka,) -> bool ---
+    Run             :: proc(umka: ^Umka,) -> i32 ---
+    Call            :: proc(umka: ^Umka, fn: ^FuncContext) -> i32 ---
+    Free            :: proc(umka: ^Umka,) ---
+    GetError        :: proc(umka: ^Umka,) -> ^Error ---
+    Alive           :: proc(umka: ^Umka,) -> bool ---
+    Asm             :: proc(umka: ^Umka,) -> [^]byte ---
+    AddModule       :: proc(umka: ^Umka, fileName, sourceString: cstring) -> bool ---
+    AddFunc         :: proc(umka: ^Umka, name: cstring, func: ExternFunc) -> bool ---
+    GetFunc         :: proc(umka: ^Umka, moduleName, fnName: cstring, fn: ^FuncContext) -> bool ---
+    GetCallStack    :: proc(umka: ^Umka, depth: i32, nameSize: i32, offset: ^i32, fileName, fnName: [^]byte, line:^i32) -> bool ---
+    SetHook         :: proc(umka: ^Umka, event: HookEvent, hook: HookFunc) ---
+    AllocData       :: proc(umka: ^Umka, size: i32, onFree: ExternFunc=nil) -> rawptr ---
+    IncRef          :: proc(umka: ^Umka, ptr: rawptr) ---
+    DecRef          :: proc(umka: ^Umka, ptr: rawptr) ---
+    GetMapItem      :: proc(umka: ^Umka, map_: ^Map, key: StackSlot) -> rawptr ---
+    MakeStr         :: proc(umka: ^Umka, str: cstring) -> [^]byte ---
+    GetStrLen       :: proc(str: cstring) -> i32 ---
+    MakeDynArray    :: proc(umka: ^Umka, array: rawptr, type: ^Type, len: i32) ---
+    GetDynArrayLen  :: proc(array: rawptr) ---
+    GetVersion      :: proc() -> i32 ---
+    GetMemUsage     :: proc(umka: ^Umka,) -> i64 ---
+    MakeFuncContext :: proc(umka: ^Umka, closureType: ^Type, entryOffset:i32, fn: ^FuncContext) ---
+    GetParam        :: proc(params: [^]StackSlot, index: i32) -> ^StackSlot ---
+    GetUpValue      :: proc(params: [^]StackSlot) -> ^Any ---
+    GetResult       :: proc(params, result: [^]StackSlot) -> ^StackSlot ---
+    GetGetMetadata  :: proc(umka: ^Umka,) -> rawptr ---
+    SetMedata       :: proc(umka: ^Umka, metadata: rawptr) ---
+    MakeStruct      :: proc(umka: ^Umka, type: ^Type) ---
+    GetBaseType     :: proc(type: ^Type) -> ^Type ---
+    GetParamType    :: proc(params: [^]StackSlot, index: i32) -> ^Type ---
+    GetResultType   :: proc(params, result: [^]StackSlot) -> ^Type ---
+    GetFieldType    :: proc(structType: ^Type, fieldName: cstring) -> ^Type ---
+    GetMapKeyType   :: proc(mapType: ^Type) -> ^Type ---
+    GetMapItemType  :: proc(mapType: ^Type) -> ^Type ---
+    AddClosure      :: proc(umka: ^Umka, name: cstring, func: ExternFunc, upvalue: rawptr) ---
+}
+
+get_api :: proc(umka: ^Umka) -> ^API {
+    return cast(^API) umka
+}
+
+get_instance :: proc(result: ^StackSlot) -> ^Umka {
+    return cast(^Umka) result.ptrVal
+}
