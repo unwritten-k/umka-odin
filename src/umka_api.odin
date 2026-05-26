@@ -63,7 +63,7 @@ Type :: struct {}
 DynArray :: struct ($T: typeid)  {
     type: ^Type, // should not be changed
     itemSize: i64,
-    data: T
+    data: [^]T
 }
 
 Map :: struct {
