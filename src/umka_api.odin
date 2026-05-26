@@ -42,7 +42,7 @@ FuncContext :: struct {
     result: ^StackSlot,
 }
 
-ExternFunc :: #type proc "c" (params, result: ^StackSlot)
+ExternFunc :: #type proc "c" (params, result: [^]StackSlot)
 
 HookEvent :: enum {
     UMKA_HOOK_CALL,
