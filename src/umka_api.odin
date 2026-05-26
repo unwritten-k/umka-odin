@@ -25,8 +25,7 @@ else {
     }
 }
 
-tagUmka :: struct {}
-Umka :: tagUmka
+Umka :: struct {}
 
 StackSlot :: struct #raw_union {
     intVal      : i64,    
@@ -53,8 +52,7 @@ HookEvent :: enum {
 
 HookFunc :: #type proc "c" (fileName, funcName:cstring, line:i32)
 
-tagType :: struct {}
-Type :: tagType
+Type :: struct {}
 
 DynArray :: struct ($T: typeid)  {
     type: ^Type, // should not be changed
@@ -62,10 +60,9 @@ DynArray :: struct ($T: typeid)  {
     data: T
 }
 
-tagMapNode :: struct {}
 Map :: struct {
     type: ^Type,
-    root: ^tagMapNode
+    root: ^struct {}
 }
 
 Any :: struct {
