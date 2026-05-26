@@ -1,0 +1,5 @@
+import "module.um"
+
+fn print_stmt () {
+    module::print("hello world", 5)
+}
