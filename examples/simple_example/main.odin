@@ -2,7 +2,7 @@ package test_1
 
 import "base:runtime"
 import "core:fmt"
-import um "../../src"
+import um "../../"
 
 print_fn :: proc "c" (params, result: [^]um.StackSlot) {
     context = runtime.default_context()
@@ -20,7 +20,7 @@ main :: proc() {
     
     umka := um.Alloc()
     defer if um.Alive(umka) do um.Free(umka)
-    umka_ok := um.Init(umka, "simple_example/test.um")
+    umka_ok := um.Init(umka, "test.um")
 
     if !umka_ok {
         fmt.eprintln("Could not initialize Umka! Error:", um.GetError(umka))

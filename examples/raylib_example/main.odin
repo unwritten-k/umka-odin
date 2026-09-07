@@ -3,7 +3,7 @@ package raylib_test
 import "core:fmt"
 import ray "vendor:raylib"
 
-import um "../../src"
+import um "../../"
 
 rlDrawPlane :: proc "c" (params, result: [^]um.StackSlot) {
     center_pos := cast(^ray.Vector3)um.GetParam(params, 0)
@@ -30,7 +30,7 @@ main :: proc() {
     umkaInitBodies, umkaDrawBodies: um.FuncContext
     umka := um.Alloc()
     defer um.Free(umka)
-    umka_ok := um.Init(umka, "raylib_example/3dcam.um")
+    umka_ok := um.Init(umka, "3dcam.um")
 
     if umka_ok {
 
