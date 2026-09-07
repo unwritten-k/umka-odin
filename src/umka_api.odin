@@ -222,10 +222,10 @@ foreign lib {
     AddClosure      :: proc(umka: ^Umka, name: cstring, func: ExternFunc, upvalue: rawptr) ---
 }
 
-get_api :: proc(umka: ^Umka) -> ^API {
+get_api :: #force_inline proc "contextless" (umka: ^Umka) -> ^API {
     return cast(^API) umka
 }
 
-get_instance :: proc(result: ^StackSlot) -> ^Umka {
+get_instance :: #force_inline proc "contextless" (result: ^StackSlot) -> ^Umka {
     return cast(^Umka) result.ptrVal
 }
