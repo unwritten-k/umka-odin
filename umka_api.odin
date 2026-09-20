@@ -128,7 +128,7 @@ fn_UmkaMakeFuncContext :: #type proc "c" (umka: ^Umka, closureType: ^Type, entry
 fn_UmkaGetParam        :: #type proc "c" (params: [^]StackSlot, index: i32) -> ^StackSlot
 fn_UmkaGetUpValue      :: #type proc "c" (params: [^]StackSlot) -> ^Any
 fn_UmkaGetResult       :: #type proc "c" (params, result: [^]StackSlot) -> ^StackSlot
-fn_UmkaGetGetMetadata  :: #type proc "c" (umka: ^Umka,) -> rawptr
+fn_UmkaGetMetadata     :: #type proc "c" (umka: ^Umka,) -> rawptr
 fn_UmkaSetMedata       :: #type proc "c" (umka: ^Umka, metadata: rawptr)
 fn_UmkaMakeStruct      :: #type proc "c" (umka: ^Umka, type: ^Type)
 fn_UmkaGetBaseType     :: #type proc "c" (type: ^Type) -> ^Type
@@ -168,7 +168,7 @@ API :: struct {
     umkaGetParam        : fn_UmkaGetParam,
     umkaGetUpValue      : fn_UmkaGetUpValue,
     umkaGetResult       : fn_UmkaGetResult,
-    umkaGetMetadata     : fn_UmkaGetGetMetadata,
+    umkaGetMetadata     : fn_UmkaGetMetadata,
     umkaSetMetadata     : fn_UmkaSetMedata,
     umkaMakeStruct      : fn_UmkaMakeStruct,
     umkaGetBaseType     : fn_UmkaGetBaseType,
@@ -210,7 +210,7 @@ foreign lib {
     GetParam        :: proc(params: [^]StackSlot, index: i32) -> ^StackSlot ---
     GetUpValue      :: proc(params: [^]StackSlot) -> ^Any ---
     GetResult       :: proc(params, result: [^]StackSlot) -> ^StackSlot ---
-    GetGetMetadata  :: proc(umka: ^Umka,) -> rawptr ---
+    GetMetadata     :: proc(umka: ^Umka,) -> rawptr ---
     SetMedata       :: proc(umka: ^Umka, metadata: rawptr) ---
     MakeStruct      :: proc(umka: ^Umka, type: ^Type) ---
     GetBaseType     :: proc(type: ^Type) -> ^Type ---
