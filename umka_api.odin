@@ -211,7 +211,7 @@ foreign lib {
     GetUpValue      :: proc(params: [^]StackSlot) -> ^Any ---
     GetResult       :: proc(params, result: [^]StackSlot) -> ^StackSlot ---
     GetMetadata     :: proc(umka: ^Umka,) -> rawptr ---
-    SetMedata       :: proc(umka: ^Umka, metadata: rawptr) ---
+    SetMetadata       :: proc(umka: ^Umka, metadata: rawptr) ---
     MakeStruct      :: proc(umka: ^Umka, type: ^Type) ---
     GetBaseType     :: proc(type: ^Type) -> ^Type ---
     GetParamType    :: proc(params: [^]StackSlot, index: i32) -> ^Type ---
