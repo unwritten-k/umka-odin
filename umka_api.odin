@@ -72,16 +72,8 @@ Map :: struct {
 }
 
 Any :: struct {
-
-    struct #raw_union {
-        data: rawptr,
-        self: rawptr
-    },
-
-    struct #raw_union {
-        type: ^Type,
-        self_type: ^Type,
-    }
+    data: rawptr,
+    self: rawptr,
 }
 
 Closure :: struct {
