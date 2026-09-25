@@ -73,7 +73,7 @@ Map :: struct {
 
 Any :: struct {
     data: rawptr,
-    self: rawptr,
+    type: rawptr,
 }
 
 Closure :: struct {
