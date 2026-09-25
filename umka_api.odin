@@ -61,14 +61,14 @@ HookFunc :: #type proc "c" (fileName, funcName:cstring, line:i32)
 Type :: struct {}
 
 DynArray :: struct ($T: typeid)  {
-    type: ^Type, // should not be changed
+    type: ^Type,
     itemSize: i64,
     data: [^]T
 }
 
 Map :: struct {
     type: ^Type,
-    root: ^struct {}
+    root: rawptr,
 }
 
 Any :: struct {
