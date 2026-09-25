@@ -203,7 +203,7 @@ foreign lib {
     MakeStr         :: proc(umka: ^Umka, str: cstring) -> [^]byte ---
     GetStrLen       :: proc(str: cstring) -> i32 ---
     MakeDynArray    :: proc(umka: ^Umka, array: rawptr, type: ^Type, len: i32) ---
-    GetDynArrayLen  :: proc(array: rawptr) ---
+    GetDynArrayLen  :: proc(array: rawptr) -> i32 ---
     GetVersion      :: proc() -> i32 ---
     GetMemUsage     :: proc(umka: ^Umka,) -> i64 ---
     MakeFuncContext :: proc(umka: ^Umka, closureType: ^Type, entryOffset:i32, fn: ^FuncContext) ---
