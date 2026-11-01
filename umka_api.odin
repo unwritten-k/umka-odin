@@ -111,7 +111,7 @@ fn_UmkaIncRef          :: #type proc "c" (umka: ^Umka, ptr: rawptr)
 fn_UmkaDecRef          :: #type proc "c" (umka: ^Umka, ptr: rawptr)
 fn_UmkaGetMapItem      :: #type proc "c" (umka: ^Umka, map_: ^Map, key: StackSlot) -> rawptr
 fn_UmkaMakeStr         :: #type proc "c" (umka: ^Umka, str: cstring) -> [^]byte
-fn_UmkaGetStrLen       :: #type proc "c" (str: cstring) -> i32
+fn_UmkaGetStrLen       :: #type proc "c" (str: [^]u8) -> i32
 fn_UmkaMakeDynArray    :: #type proc "c" (umka: ^Umka, array: rawptr, type: ^Type, len: i32)
 fn_UmkaGetDynArrayLen  :: #type proc "c" (array: rawptr)
 fn_UmkaGetVersion      :: #type proc "c" () -> i32
@@ -193,7 +193,7 @@ foreign lib {
     DecRef          :: proc(umka: ^Umka, ptr: rawptr) ---
     GetMapItem      :: proc(umka: ^Umka, map_: ^Map, key: StackSlot) -> rawptr ---
     MakeStr         :: proc(umka: ^Umka, str: cstring) -> [^]byte ---
-    GetStrLen       :: proc(str: cstring) -> i32 ---
+    GetStrLen       :: proc(str: [^]u8) -> i32 ---
     MakeDynArray    :: proc(umka: ^Umka, array: rawptr, type: ^Type, len: i32) ---
     GetDynArrayLen  :: proc(array: rawptr) -> i32 ---
     GetVersion      :: proc() -> i32 ---
